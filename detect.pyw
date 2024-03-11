@@ -9,7 +9,7 @@ import face_recognition
 import psutil
 import pyautogui
 import pyperclip
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken as InvalidPasswordKey
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
@@ -75,7 +75,7 @@ def face_verificated(face_name: str):
         cv2.destroyWindow("Capture Window")
         took_pic = True
     else:
-        pyautogui.alert(text="No face detected nigha", title="Bro", button="OK")
+        pyautogui.alert(text="Couldn't take photo", title="Bro", button="OK")
 
     if took_pic:
         if recognize_face(CAPTURED_PIC)[0] == face_name:
@@ -103,6 +103,11 @@ def get_master_password():
 
 
 if os.path.exists(ENC_MP_BIN):
-    if face_verificated(FACE_RECOGNITION_USER):
-        pyperclip.copy(get_master_password())
-        pyautogui.hotkey("ctrl", "v")
+    if DO_FACE_RECOGNITION and not face_verificated(FACE_RECOGNITION_USER):
+        pyautogui.alert(text="No photo could be taken", title="Bro", button="OK")
+    else:
+        try:
+            pyperclip.copy(get_master_password())
+            pyautogui.hotkey("ctrl", "v")
+        except InvalidPasswordKey:
+            pyautogui.alert(text="password mismatch", title="Bro", button="OK")

@@ -4,7 +4,7 @@ I created this project so I can use a USB drive to automatically type in my mast
 
 #### Security & Features
 
-- Your password is encrypted and saved into the flash drive. unless someone doesn't have access to your pc, it can't be decrypted.
+- Your password is encrypted and saved into the flash drive. unless someone doesn't have access to your pc, it can't be decrypted. even by copy pasting the files to different devices.
 - To enhance your password even more, the app also does some face recognition using Open-CV to verify it's you who's using this app and flash drive. You can turn this option off.
 
 ## Getting Started
@@ -27,6 +27,7 @@ I created this project so I can use a USB drive to automatically type in my mast
      **Note:** Don't copy it. You want to seperate these two so your security would increase.
 
 - **Training the AI**
+  _This section is not needed if you don't want to do face recognition.. Just set `DO_FACE_RECOGNITION` to False (in config)_
 
   1. Change your name in the config file, using the `FACE_RECOGNITION_USER` variable. The name must be folder-name-friendly.
   2. Take multiple images of your face, put them all in a folder under trainting (the more pictures the better). The name of the folder must be the same string you specified for `FACE_RECOGNITION_USER`.
@@ -60,13 +61,16 @@ I created this project so I can use a USB drive to automatically type in my mast
   1. Enable the Operational Log and create your custom view. You can use [this tutorial](https://www.techrepublic.com/article/how-to-track-down-usb-flash-drive-usage-in-windows-10s-event-viewer/) (you can only use 2003 as the ID since we only need to detect when a USB is plugged in)
   2. Create an scheduled task. There is [this tutorial](https://stackoverflow.com/a/32927488/22502140) for it. For the action, just copy the path to the bat file and paste it in the `Program/Script` field.
 
-**Note:** if you have multiple webcams, you can increase `CAM_PORT` in config, to reach the webcam you want
-
 #### Usage
 
 1. Open your password manager
 2. Plug in your USB while you're in front of the camera
 3. Instantly click on the password field so it will paste it there for you. If you failed to do it on time, you can manually paste it from the clipboard.
+
+## IMPORTANT NOTES
+
+1. If you have multiple webcams, you can increase `CAM_PORT` in config, to reach the webcam you want
+2. Each password encrypted file is unique to the device you used to create that password, therefore even if you copy paste this folder to another pc and use the same usb and encrypted file, you don't get to see the password. If you want to use your password on multiple devices, simply make a new password as explained in [Create encrypted password and key](#create-encrypted-password-and-key) in the new device, then change the name of the `enc_mp.bin` (both the file and the config) and use these new files alongside.
 
 ## License
 

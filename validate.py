@@ -58,7 +58,7 @@ if result:
     cv2.destroyWindow("Capture Window")
     took_pic = True
 else:
-    pyautogui.alert(text="No face detected", title="Bro", button="OK")
+    pyautogui.alert(text="No photo could be taken", title="Bro", button="OK")
 
 if took_pic:
     print(recognize_face(CAPTURED_PIC))
