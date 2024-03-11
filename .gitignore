@@ -1,0 +1,11 @@
+detect.bat
+detect.py
+enc_salt.bin
+encodings.pkl
+prevdetect.py
+/temp/
+/masterp/
+/source/
+/training/
+/captured_pic.png
+__pycache__/
