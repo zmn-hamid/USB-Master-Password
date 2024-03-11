@@ -33,7 +33,7 @@ I created this project so I can use a USB drive to automatically type in my mast
      The structure would look like this:
 
   ```
-  USB Master Password
+  USB-Master-Password
   ├── training
   │   └── hamid
   │       ├── img1.jpg
